@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://chokierwin.github.io/</loc><lastmod>2026-06-25</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://chokierwin.github.io/index.html</loc><lastmod>2026-06-25</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://chokierwin.github.io/about.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://chokierwin.github.io/contact.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://chokierwin.github.io/privacy.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- 15 Artikel statis (tetap dipertahankan untuk SEO/AdSense) -->
+  <url><loc>https://chokierwin.github.io/artikel-film-indonesia-terbaik-2024.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-serial-netflix-wajib-tonton.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-anime-populer-2024.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-perbedaan-netflix-disney-prime.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-tips-pilih-film.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-horor-indonesia-terbaik.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-action-netflix-terbaik.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-korea-terbaru.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-anime-terbaik-sepanjang-masa.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-urutan-film-marvel.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-romantis-indonesia.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-disney-plus-terbaik.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-thriller-terbaik.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-film-keluarga-terbaik.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-serial-tv-terbaik-2024.html</loc><lastmod>2026-06-25</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Artikel CMS dari Google Sheets (URL dinamis dengan parameter slug) -->
+  <url><loc>https://chokierwin.github.io/artikel-cms.html?slug=film-horror-indonesia-2026</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-cms.html?slug=film-indonesia-terbaik-2026</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chokierwin.github.io/artikel-cms.html?slug=5-film-sci-fi-terbaik-yang-wajib-ditonton</loc><lastmod>2026-06-25</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Catatan: admin.html dan auth.html SENGAJA TIDAK didaftarkan -->
+  <!-- karena keduanya pakai meta noindex (halaman privat/backend) -->
+</urlset>
