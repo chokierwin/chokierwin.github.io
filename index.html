@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Performance hints -->
+  <meta name="format-detection" content="telephone=no">
+  <title>FlixID — Nonton Film, Serial & Anime Terbaru</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Temukan film trending, serial TV, dan anime terbaru. Cek di mana bisa nonton legal di Netflix, Disney+, Prime Video, Viu dan lainnya. Tonton trailer gratis!">
+  <meta name="keywords" content="film terbaru, trailer film, streaming movie, netflix indonesia, disney plus, anime, serial tv, film indonesia, nonton online">
+  <meta name="author" content="FlixID">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://chokierwin.github.io/">
+
+  <!-- Structured Data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "FlixID",
+    "url": "https://chokierwin.github.io/",
+    "description": "Temukan film trending, serial TV, dan anime terbaru. Cek di mana bisa nonton legal di Netflix, Disney+, Prime Video dan lainnya.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://chokierwin.github.io/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "inLanguage": "id-ID"
+  }
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FlixID",
+    "url": "https://chokierwin.github.io/",
+    "logo": "https://chokierwin.github.io/icon-512.png",
+    "sameAs": [
+      "https://instagram.com/flixid",
+      "https://twitter.com/flixid"
+    ]
+  }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FlixID — Nonton Film, Serial & Anime Terbaru">
+  <meta property="og:description" content="Temukan trailer & platform streaming film favoritmu. Netflix, Disney+, Prime Video dan lainnya — semua di FlixID.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chokierwin.github.io/">
+  <meta property="og:image" content="https://chokierwin.github.io/og-image.jpg">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FlixID — Nonton Film & Serial">
+  <meta name="twitter:description" content="Cari film trending dan lihat di mana bisa streaming secara resmi.">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- FAQ Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Apakah FlixID gratis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ya. FlixID sepenuhnya gratis digunakan untuk mencari informasi film, menonton trailer, dan menemukan platform streaming resmi di Indonesia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah FlixID menayangkan film secara langsung?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tidak. FlixID adalah platform agregator yang membantu pengguna menemukan tempat streaming legal seperti Netflix, Disney+, Prime Video, Viu, dan Vidio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Platform streaming apa saja yang tersedia di FlixID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FlixID menampilkan informasi dari Netflix, Disney+, Prime Video, Viu, Vidio, WeTV, iQIYI, Crunchyroll, dan berbagai platform streaming legal lainnya yang tersedia di Indonesia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apakah perlu mendaftar untuk menggunakan FlixID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tidak perlu. Kamu bisa langsung menggunakan FlixID tanpa mendaftar. Login hanya diperlukan untuk fitur Watchlist — menyimpan film favorit ke daftar pribadi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bagaimana cara mencari film di FlixID?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ketik judul film di kolom pencarian di pojok kanan atas. Hasil pencarian akan muncul secara real-time. Kamu juga bisa browse berdasarkan kategori seperti Trending, Top Rated, Film Indonesia, Serial TV, dan Segera Tayang."
+        }
+      }
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#E50914">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FlixID">
+
+  <!-- DNS prefetch for faster connections -->
+  <link rel="dns-prefetch" href="https://api.themoviedb.org">
+  <link rel="dns-prefetch" href="https://image.tmdb.org">
+  <link rel="dns-prefetch" href="https://www.youtube.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <!-- Preconnect to font origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+  <link rel="preconnect" href="https://api.themoviedb.org" crossorigin>
+  <!-- Load fonts async to prevent render blocking -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Google AdSense -->
+  <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8642572709653420" crossorigin="anonymous"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JDD9XZQWQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6JDD9XZQWQ');
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --red: #E50914; --dark: #0f0f0f; --card-bg: #1a1a1a;
+      --text: #fff; --muted: #b3b3b3;
+      --font-title: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: var(--text); font-family: var(--font-body); overflow-x: hidden; min-height: 100vh; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15,15,15,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .logo { font-family: var(--font-title); font-size: 2rem; letter-spacing: 2px; cursor: pointer; text-decoration: none; }
+    .logo span:first-child { color: #fff; }
+    .logo span:last-child { color: var(--red); }
+    .nav-links { display: flex; gap: 22px; }
+    .nav-links a { color: var(--muted); font-size: 14px; text-decoration: none; transition: color .2s; cursor: pointer; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .search-wrap { position: relative; }
+    .search-wrap input { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 8px 14px 8px 34px; color: #fff; font-size: 13px; width: 190px; font-family: var(--font-body); transition: border-color .2s, width .3s; }
+    .search-wrap input:focus { outline: none; border-color: rgba(229,9,20,0.5); width: 240px; }
+    .search-wrap input::placeholder { color: var(--muted); }
+    .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 14px; }
+    .avatar { width: 34px; height: 34px; border-radius: 6px; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; padding: 0 48px 80px; overflow: hidden; }
+    .hero-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center top; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(15,15,15,0.97) 40%, rgba(15,15,15,0.3) 80%), linear-gradient(to top, rgba(15,15,15,0.98) 0%, transparent 60%); }
+    .hero-content { position: relative; z-index: 2; max-width: 580px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(229,9,20,0.12); border: 1px solid rgba(229,9,20,0.3); padding: 5px 14px; border-radius: 20px; font-size: 11px; color: rgba(255,130,130,0.9); margin-bottom: 18px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .hero h1 { font-family: var(--font-title); font-size: 4.5rem; line-height: 1; letter-spacing: 2px; margin-bottom: 14px; text-shadow: 0 2px 20px rgba(0,0,0,0.8); }
+    .hero h1 span { color: var(--red); }
+    .hero-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+    .rating-badge { background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.3); color: #ffd700; padding: 3px 10px; border-radius: 4px; font-weight: 600; }
+    .sep { color: rgba(255,255,255,0.2); }
+    .hero p { font-size: 14px; line-height: 1.75; color: var(--muted); margin-bottom: 28px; max-width: 460px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-play { background: var(--red); color: #fff; border: none; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: var(--font-body); transition: background .2s, transform .1s; }
+    .btn-play:hover { background: #f40612; transform: translateY(-1px); }
+    .btn-info { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 13px 22px; border-radius: 6px; font-size: 15px; cursor: pointer; font-family: var(--font-body); transition: background .2s; }
+    .btn-info:hover { background: rgba(255,255,255,0.18); }
+
+    /* AD BANNER */
+    .ad-banner { margin: 0 48px; background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.2); min-height: 90px; display: flex; align-items: center; justify-content: center; }
+
+    /* TABS */
+    .tabs-section { padding: 28px 48px 0; }
+    .tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 24px; overflow-x: auto; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab { padding: 10px 22px; font-size: 14px; font-weight: 500; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; white-space: nowrap; }
+    .tab:hover { color: #fff; }
+    .tab.active { color: #fff; border-bottom-color: var(--red); }
+
+    /* ROWS CONTAINER */
+    .section { padding: 24px 48px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .section-title { font-size: 18px; font-weight: 600; }
+    .section-title span { color: var(--red); }
+    .see-all { font-size: 12px; color: var(--red); cursor: pointer; text-decoration: none; font-weight: 500; }
+    
+    /* SEMUA ROW SEKARANG GRID VERTIKAL KEBAWAH (bukan horizontal scroll seperti LK21) */
+    .row, #main-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px 14px;
+      margin-bottom: 8px;
+    }
+    .row .card, #main-row .card { flex: unset; width: 100%; }
+    @media(max-width:1200px){ .row, #main-row { grid-template-columns: repeat(5,1fr); } }
+    @media(max-width:900px){  .row, #main-row { grid-template-columns: repeat(4,1fr); } }
+    @media(max-width:600px){  .row, #main-row { grid-template-columns: repeat(3,1fr); } }
+    @media(max-width:380px){  .row, #main-row { grid-template-columns: repeat(2,1fr); } }
+
+    /* Tombol Muat Lebih Banyak untuk setiap row sekunder */
+    .row-load-more-wrap { text-align: center; margin: 4px 0 28px; }
+    .btn-row-load-more { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 10px 28px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: var(--font-body); transition: all .2s; }
+    .btn-row-load-more:hover { background: rgba(229,9,20,0.15); border-color: rgba(229,9,20,0.4); }
+    .btn-row-load-more:disabled { opacity: 0.5; cursor: default; }
+
+    .card { flex: 0 0 150px; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform .28s, box-shadow .28s; position: relative; background: var(--card-bg); }
+    .card:hover { transform: scale(1.07); box-shadow: 0 24px 50px rgba(0,0,0,0.8); z-index: 2; }
+    .card-thumb { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .card-thumb-placeholder { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg,#1a1a2e,#16213e); font-size: 40px; }
+    .card-info { padding: 10px 10px 12px; }
+    .card-name { font-size: 12px; font-weight: 500; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-sub { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+    .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+    .card-rating { position: absolute; bottom: 46px; right: 8px; background: rgba(0,0,0,0.8); color: #ffd700; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+
+    /* SKELETON */
+    .skeleton { background: linear-gradient(90deg,#1a1a1a 25%,#252525 50%,#1a1a1a 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .skeleton-card { flex: 0 0 150px; height: 260px; border-radius: 8px; }
+
+    /* ERROR STATE */
+    .error-state { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 32px; color: var(--muted); text-align: center; width: 100%; }
+    .error-state .error-icon { font-size: 36px; }
+    .error-state p { font-size: 14px; }
+    .btn-retry { background: rgba(229,9,20,0.15); border: 1px solid rgba(229,9,20,0.3); color: var(--red); padding: 8px 20px; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: var(--font-body); transition: background .2s; }
+    .btn-retry:hover { background: rgba(229,9,20,0.25); }
+
+    /* TOMBOL MUAT LEBIH BANYAK (Z-INDEX 10 UNTUK MENCEGAH KEBOCORAN MODAL DESKTOP) */
+    .load-more-wrap { text-align: center; padding: 24px 0 8px; position: relative; z-index: 10; clear: both; }
+    .btn-load-more { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 12px 34px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font-body); transition: all .2s; position: relative; z-index: 10; }
+    .btn-load-more:hover { background: var(--red); border-color: var(--red); box-shadow: 0 4px 15px rgba(229,9,20,0.3); }
+    .btn-load-more:disabled { opacity: 0.4; cursor: not-allowed; background: rgba(255,255,255,0.03); }
+
+    /* PROMO */
+    .promo { margin: 8px 48px; border-radius: 18px; background: linear-gradient(135deg,rgba(229,9,20,0.13),rgba(229,9,20,0.03)); border: 1px solid rgba(229,9,20,0.18); padding: 32px 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .promo-text h3 { font-family: var(--font-title); font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 8px; }
+    .promo-text p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .promo-text p strong { color: var(--red); }
+    .btn-promo { background: var(--red); color: #fff; border: none; padding: 13px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font-body); white-space: nowrap; }
+
+    /* MODAL DESIGN DENGAN OVERLAY LAYER TERATAS (Z-INDEX 9999) */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 9999 !important; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #181818; border-radius: 18px; width: 100%; max-width: 680px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); animation: modalIn .22s ease; max-height: 92vh; overflow-y: auto; position: relative; z-index: 10000; }
+    @keyframes modalIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+    .modal-img-wrap { position: relative; }
+    .modal-backdrop { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .modal-backdrop-placeholder { width: 100%; height: 280px; display: flex; align-items: center; justify-content: center; font-size: 80px; background: linear-gradient(160deg,#1a1a2e,#16213e); }
+    .modal-close { position: absolute; top: 14px; right: 14px; background: rgba(0,0,0,0.75); border: none; color: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 17px; cursor: pointer; z-index: 10010; display: flex; align-items: center; justify-content: center; }
+    .trailer-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+    .trailer-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .modal-body { padding: 22px 28px 28px; }
+    .modal-title { font-family: var(--font-title); font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px; }
+    .modal-meta { display: flex; gap: 10px; font-size: 13px; color: var(--muted); margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+    .modal-genres { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .genre-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 4px 12px; border-radius: 20px; font-size: 11px; color: var(--muted); }
+    .modal-desc { font-size: 14px; line-height: 1.75; color: var(--muted); margin-bottom: 22px; }
+    
+    /* PANEL DESIGN */
+    .watch-full-section { margin-bottom: 22px; }
+    .watch-full-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .providers-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .provider-btn { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 8px 14px; text-decoration: none; color: #fff; font-size: 13px; font-weight: 500; transition: all .2s; }
+    .provider-btn:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
+    .provider-logo { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
+    .provider-logo-placeholder { width: 28px; height: 28px; border-radius: 6px; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .provider-type { font-size: 10px; color: var(--muted); display: block; }
+    
+    /* Tombol Rahasia Player Film */
+    
+    /* MODAL ACTIONS FLEX LAYOUT SYMMETRIC */
+    .modal-actions { display: flex; gap: 12px; margin-top: 10px; width: 100%; }
+    .modal-actions button { flex: 1; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+
+    /* SEARCH OVERLAY */
+    .search-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.96); padding: 100px 48px 48px; overflow-y: auto; }
+    .search-overlay.open { display: block; }
+    .search-results-title { font-size: 16px; color: var(--muted); margin-bottom: 20px; }
+    .search-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+
+    /* PWA INSTALL BANNER */
+    .pwa-banner { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a1a1a; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 14px 20px; z-index: 50; box-shadow: 0 20px 40px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 14px; max-width: 380px; width: 90%; }
+    .pwa-banner.show { display: flex; animation: slideUp .3s ease; }
+    @keyframes slideUp { from{transform:translateX(-50%) translateY(20px);opacity:0} to{transform:translateX(-50%) translateY(0);opacity:1} }
+    .pwa-icon { font-size: 28px; flex-shrink: 0; }
+    .pwa-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .pwa-text p { font-size: 12px; color: var(--muted); }
+    .pwa-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .btn-pwa-install { background: var(--red); color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    .btn-pwa-dismiss { background: transparent; color: var(--muted); border: none; font-size: 18px; cursor: pointer; }
+
+    /* FOOTER LENGKAP */
+    footer { padding: 48px 48px 24px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 24px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+    .footer-brand .footer-logo { font-family: var(--font-title); font-size: 1.8rem; letter-spacing: 2px; text-decoration: none; display: inline-block; margin-bottom: 12px; }
+    .footer-brand .footer-logo span:first-child { color: #fff; }
+    .footer-brand .footer-logo span:last-child { color: var(--red); }
+    .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 320px; }
+    .footer-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-social { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .footer-social a { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 6px 12px; border-radius: 6px; font-size: 12px; color: var(--muted); text-decoration: none; transition: all .2s; }
+    .footer-social a:hover { border-color: rgba(229,9,20,0.4); color: #fff; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .tmdb-credit { font-size: 11px; color: rgba(255,255,255,0.25); display: flex; align-items: center; gap: 6px; }
+    .tmdb-logo { background: rgba(3,192,74,0.15); color: #03c04a; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 10px; }
+
+    @media(max-width:768px){
+      nav{padding:14px 20px} .nav-links{display:none}
+      .hero{padding:0 20px 60px;min-height:85vh} .hero h1{font-size:3rem}
+      .tabs-section,.section,.promo,.ad-banner{padding-left:20px;padding-right:20px}
+      .ad-banner{margin:0 20px}
+      .promo{flex-direction:column} footer{padding:28px 20px}
+      .footer-top{flex-direction:column;grid-template-columns:1fr;gap:24px}
+      .search-overlay{padding:90px 20px 20px}
+      .modal-body{padding:16px 18px 22px}
+    }
+  </style>
+
+  <!-- WebPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "FlixID — Nonton Film, Serial & Anime Terbaru",
+    "description": "Temukan film trending, serial TV, dan anime terbaru. Cek di mana bisa nonton legal di Netflix, Disney+, Prime Video dan lainnya.",
+    "url": "https://chokierwin.github.io/",
+    "inLanguage": "id-ID",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "FlixID",
+      "url": "https://chokierwin.github.io/"
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Film, Serial TV, Anime"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Beranda",
+        "item": "https://chokierwin.github.io/"
+      }]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<a href="#main-row" style="position:absolute;top:-40px;left:0;background:var(--red);color:#fff;padding:8px 16px;z-index:999;border-radius:0 0 4px 0;font-size:13px;text-decoration:none" onfocus="this.style.top='0'">Lewati ke konten</a>
+<nav>
+  <a href="index.html" class="logo"><span>Flix</span><span>ID</span></a>
+  <div class="nav-links">
+    <a class="active" href="index.html">Beranda</a>
+    <a onclick="switchTab(document.querySelectorAll('.tab')[1],'popular','movie')">Film</a>
+    <a onclick="switchTab(document.querySelectorAll('.tab')[3],'popular','tv')">Serial TV</a>
+    <a onclick="switchTab(document.querySelectorAll('.tab')[2],'top_rated','movie')">Top Rated</a>
+    <a href="about.html">Tentang</a>
+  </div>
+  <div class="nav-right">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Cari film, serial..." autocomplete="off">
+    </div>
+    <div class="avatar" id="nav-avatar" title="Login / Profil">ID</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-img" id="hero-bg"><img id="hero-bg-img" src="" alt="Hero backdrop" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;display:none"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">🔴 &nbsp; Trending Minggu Ini</div>
+    <h1 id="hero-title">Memuat...</h1>
+    <div class="hero-meta">
+      <span class="rating-badge" id="hero-rating">★ —</span>
+      <span id="hero-year">—</span><span class="sep">|</span>
+      <span id="hero-lang">—</span>
+    </div>
+    <p id="hero-desc">Memuat deskripsi...</p>
+    <div class="hero-actions">
+      <button class="btn-play" id="hero-trailer-btn">▶ &nbsp;Tonton Trailer</button>
+      <button class="btn-info" id="hero-info-btn">🎬 &nbsp;Di Mana Nonton?</button>
+    </div>
+  </div>
+</div>
+
+<!-- AD BANNER TOP -->
+<div class="ad-banner" style="margin-top:16px;padding:0;background:transparent;border:none">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-8642572709653420"
+    data-ad-slot="auto"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- TABS -->
+<div class="tabs-section">
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab(this,'trending','movie')">🔥 Trending</div>
+    <div class="tab" onclick="switchTab(this,'popular','movie')">🎬 Film Populer</div>
+    <div class="tab" onclick="switchTab(this,'top_rated','movie')">⭐ Top Rated</div>
+    <div class="tab" onclick="switchTab(this,'popular','tv')">📺 Serial TV</div>
+    <div class="tab" onclick="switchTab(this,'upcoming','movie')">🗓️ Segera Tayang</div>
+  </div>
+</div>
+
+<!-- MAIN GRID VERTICAL KEBAWAH SECTION -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title" id="main-section-title">🔥 <span>Trending</span> Minggu Ini</div>
+  </div>
+  <div id="main-row"></div>
+  <div class="load-more-wrap" id="main-load-more-container">
+    <button class="btn-load-more" id="main-load-more" onclick="loadMoreMain()">Muat Lebih Banyak ↓</button>
+  </div>
+</div>
+
+<div class="promo">
+  <div class="promo-text">
+    <h3>CARI DI MANA NONTON?</h3>
+    <p>FlixID membantu kamu menemukan film di <strong>Netflix, Disney+, Prime Video</strong> dan lainnya.<br>Klik film → tonton trailer → langsung ke platform resminya!</p>
+  </div>
+  <button class="btn-promo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Jelajahi Sekarang →</button>
+</div>
+
+<!-- AD BANNER MID -->
+<div class="ad-banner" style="margin-top:16px;margin-bottom:8px;padding:0;background:transparent;border:none">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-8642572709653420"
+    data-ad-slot="auto"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- DATA SEKUNDER — GRID VERTIKAL KEBAWAH -->
+<div class="section">
+  <div class="section-header"><div class="section-title">🇮🇩 Film <span>Indonesia</span></div></div>
+  <div class="row" id="indonesia-row"></div>
+  <div class="row-load-more-wrap"><button class="btn-row-load-more" onclick="loadMoreRow('indonesia-row')">Muat Lebih Banyak ↓</button></div>
+</div>
+<div class="section">
+  <div class="section-header"><div class="section-title">⭐ Rating <span>Tertinggi</span></div></div>
+  <div class="row" id="toprated-row"></div>
+  <div class="row-load-more-wrap"><button class="btn-row-load-more" onclick="loadMoreRow('toprated-row')">Muat Lebih Banyak ↓</button></div>
+</div>
+<div class="section">
+  <div class="section-header"><div class="section-title">📺 Serial TV <span>Populer</span></div></div>
+  <div class="row" id="tv-row"></div>
+  <div class="row-load-more-wrap"><button class="btn-row-load-more" onclick="loadMoreRow('tv-row')">Muat Lebih Banyak ↓</button></div>
+</div>
+<div class="section">
+  <div class="section-header"><div class="section-title">🗓️ <span>Segera</span> Tayang</div></div>
+  <div class="row" id="upcoming-row"></div>
+  <div class="row-load-more-wrap"><button class="btn-row-load-more" onclick="loadMoreRow('upcoming-row')">Muat Lebih Banyak ↓</button></div>
+</div>
+
+<!-- SEO CONTENT SECTION -->
+<section style="max-width:900px;margin:0 auto;padding:40px 48px 0">
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;margin-bottom:16px">Tonton Film dan Serial Favorit Secara <span style="color:#E50914">Legal</span></h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+    <p style="font-size:14px;color:#b3b3b3;line-height:1.8">FlixID membantu kamu menemukan tempat streaming resmi untuk film, serial TV, anime, dan tayangan populer lainnya. Kami menampilkan informasi platform seperti <strong style="color:#fff">Netflix, Disney+, Prime Video, Viu, Vidio</strong>, dan layanan streaming legal lainnya yang tersedia di Indonesia.</p>
+    <p style="font-size:14px;color:#b3b3b3;line-height:1.8">Cari film favoritmu, lihat <strong style="color:#fff">trailer resmi</strong> langsung di FlixID, cek rating dari jutaan penonton dunia, baca sinopsis lengkap, dan temukan di platform mana film tersebut tersedia — semua <strong style="color:#fff">gratis tanpa perlu daftar</strong>.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px">
+    <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">🎬</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Data Film Real</div>
+      <div style="font-size:12px;color:#b3b3b3">Jutaan judul dari TMDB</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">▶️</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Trailer Resmi</div>
+      <div style="font-size:12px;color:#b3b3b3">Langsung dari YouTube</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">📺</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Info Streaming</div>
+      <div style="font-size:12px;color:#b3b3b3">Netflix, Disney+, Viu & lainnya</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">🆓</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">100% Gratis</div>
+      <div style="font-size:12px;color:#b3b3b3">Tanpa daftar, langsung pakai</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">🇮🇩</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Film Indonesia</div>
+      <div style="font-size:12px;color:#b3b3b3">Koleksi film lokal terlengkap</div>
+    </div>
+    <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:28px;margin-bottom:8px">♡</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px">Watchlist Pribadi</div>
+      <div style="font-size:12px;color:#b3b3b3">Simpan film favorit (login)</div>
+    </div>
+  </div>
+
+  <!-- FAQ VISIBLE -->
+  <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px;margin-bottom:8px">
+    <h3 style="font-size:15px;font-weight:600;margin-bottom:14px">❓ Pertanyaan yang Sering Ditanya</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:4px;color:#fff">Apakah FlixID gratis?</div><div style="font-size:13px;color:#b3b3b3">Ya, sepenuhnya gratis tanpa perlu mendaftar.</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:4px;color:#fff">Apakah FlixID menayangkan film?</div><div style="font-size:13px;color:#b3b3b3">Tidak. FlixID hanya menampilkan trailer resmi dan mengarahkan ke platform streaming legal.</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:4px;color:#fff">Platform apa saja yang tersedia?</div><div style="font-size:13px;color:#b3b3b3">Netflix, Disney+, Prime Video, Viu, Vidio, WeTV, dan lainnya.</div></div>
+      <div><div style="font-size:13px;font-weight:600;margin-bottom:4px;color:#fff">Bagaimana cara menyimpan film?</div><div style="font-size:13px;color:#b3b3b3">Login/daftar gratis, lalu klik ♡ Simpan di setiap film.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTIKEL — SEMUA DARI GOOGLE SHEETS (CMS) -->
+<div class="section" id="cms-artikel-section" style="display:none">
+  <div class="section-header">
+    <div class="section-title">📝 Artikel <span>Film & Streaming</span></div>
+  </div>
+  <div id="cms-artikel-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"></div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo"><span>Flix</span><span>ID</span></a>
+      <p>Platform pencari film & streaming terpercaya di Indonesia. Temukan trailer, rating, dan di mana nonton film favoritmu — gratis!</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/flixid" target="_blank" rel="noopener">📸 Instagram</a>
+        <a href="https://tiktok.com/@flixid" target="_blank" rel="noopener">🎵 TikTok</a>
+        <a href="https://twitter.com/flixid" target="_blank" rel="noopener">🐦 Twitter</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <a href="index.html">Beranda</a>
+      <a href="#main-row">Film Populer</a>
+      <a href="auth.html">Login / Daftar</a>
+    </div>
+    <div class="footer-col">
+      <h4>Streaming</h4>
+      <a href="https://netflix.com" target="_blank" rel="noopener">Netflix</a>
+      <a href="https://disneyplus.com" target="_blank" rel="noopener">Disney+</a>
+      <a href="https://primevideo.com" target="_blank" rel="noopener">Prime Video</a>
+      <a href="https://viu.com" target="_blank" rel="noopener">Viu</a>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <a href="about.html">Tentang FlixID</a>
+      <a href="privacy.html">Kebijakan Privasi</a>
+      <a href="contact.html">Kontak Kami</a>
+      <a href="privacy.html#dmca">DMCA</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 FlixID. Made with ❤️ in Indonesia.</div>
+    <div class="tmdb-credit"><span class="tmdb-logo">TMDB</span> Data dari The Movie Database</div>
+  </div>
+</footer>
+
+
+<!-- MODAL COMPATIBLE CAMUFLASE DESIGN -->
+<div class="modal-overlay" id="modal" onclick="closeModalClick(event)">
+  <div class="modal">
+    <div class="modal-img-wrap">
+      <div id="modal-media"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title" id="modal-title">Memuat...</div>
+      <div class="modal-meta" id="modal-meta"></div>
+      <div class="modal-genres" id="modal-genres"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="watch-full-section" id="watch-full-section"></div>
+      <div class="modal-actions">
+        <button id="watchlist-btn" onclick="toggleWatchlist()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#fff;display:none">
+          ♡ Simpan
+        </button>
+        <button style="background:var(--red);color:#fff;border:none" onclick="closeModal()">✕ Tutup Jendela</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="search-overlay">
+  <button onclick="closeSearch()" style="position:fixed;top:20px;right:20px;background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;z-index:160">✕</button>
+  <div class="search-results-title" id="search-results-title">Ketik minimal 2 karakter...</div>
+  <div class="search-results-grid" id="search-results-grid"></div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const PROXY = 'https://api.themoviedb.org/3'; 
+const API_KEY = '1e1af9892dbebb210cd4c5a3fb1588ed';
+const IMG = 'https://image.tmdb.org/t/p/';
+const LANG = 'id-ID';
+
+const providerLinks = {
+  'Netflix':'https://www.netflix.com','Disney Plus':'https://www.disneyplus.com',
+  'Disney+':'https://www.disneyplus.com','Amazon Prime Video':'https://www.primevideo.com',
+  'Prime Video':'https://www.primevideo.com','Apple TV':'https://tv.apple.com',
+  'Viu':'https://www.viu.com','WeTV':'https://wetv.vip','iQIYI':'https://www.iq.com','Vidio':'https://www.vidio.com'
+};
+
+// ── CACHE ────────────────────────────────────────────────
+const cache = new Map();
+async function apiFetch(endpoint) {
+  if (cache.has(endpoint)) return cache.get(endpoint);
+  const res = await fetch(`${PROXY}${endpoint}&api_key=${API_KEY}&language=${LANG}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  cache.set(endpoint, data);
+  return data;
+}
+
+// ── HELPERS ──────────────────────────────────────────────
+function getYear(i){const d=i.release_date||i.first_air_date||'';return d?d.substring(0,4):'—';}
+function getTitle(i){return i.title||i.name||'Tanpa Judul';}
+function getRating(i){return i.vote_average?i.vote_average.toFixed(1):'—';}
+function getLang(i){const m={id:'Indonesia',en:'Inggris',ja:'Jepang',ko:'Korea',fr:'Prancis',es:'Spanyol',zh:'Mandarin',hi:'Hindi',th:'Thailand'};return m[i.original_language]||i.original_language||'—';}
+function renderSkeletons(n=6){return Array(n).fill('<div class="skeleton skeleton-card"></div>').join('');}
+function renderError(rowId, endpoint, type){
+  return `<div class="error-state"><p>Gagal memuat konten</p></div>`;
+}
+
+function renderCard(item, type='movie'){
+  const title=getTitle(item), year=getYear(item), rating=getRating(item);
+  const poster=item.poster_path
+    ?`<img class="card-thumb" src="${IMG}w342${item.poster_path}" alt="${title}" loading="lazy" decoding="async">`
+    :`<div class="card-thumb-placeholder">🎬</div>`;
+  return `<div class="card" onclick="openModal(${item.id},'${type}')" role="button">
+    ${poster}<div class="card-rating">★ ${rating}</div>
+    <div class="card-info"><div class="card-name">${title}</div>
+    <div class="card-sub">${year}<div class="dot"></div>${getLang(item)}</div></div>
+  </div>`;
+}
+
+// ── LOAD ROW ─────────────────────────────────────────────
+async function loadRow(rowId, endpoint, type='movie'){
+  const row=document.getElementById(rowId);
+  row.innerHTML=renderSkeletons();
+  try{
+    const data=await apiFetch(endpoint);
+    const results=(data.results||[]).slice(0,12);
+    row.innerHTML=results.length?results.map(m=>renderCard(m,type)).join(''):renderError(rowId,endpoint,type);
+  }catch(e){row.innerHTML=renderError(rowId,endpoint,type);}
+}
+
+// ── LOAD MORE SYSTEM (Main Row) ─────────────────────────
+let mainPage=1, mainEndpoint='/trending/movie/week?', mainType='movie', mainIsTrending=true, mainLoading=false;
+async function loadMoreMain(){
+  if(mainLoading) return;
+  mainLoading=true;
+  const btn = document.getElementById('main-load-more');
+  const row = document.getElementById('main-row');
+  btn.textContent = '⏳ Memuat film baru...';
+  btn.disabled = true;
+
+  try {
+    mainPage++;
+    let url = mainIsTrending 
+      ? `${PROXY}/trending/${mainType}/week?api_key=${API_KEY}&language=${LANG}&page=${mainPage}`
+      : `${PROXY}${mainEndpoint}api_key=${API_KEY}&language=${LANG}&page=${mainPage}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    const results = data.results || [];
+
+    if(results.length === 0){ btn.style.display = 'none'; mainLoading = false; return; }
+
+    results.forEach(function(m){
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = renderCard(m, mainType);
+      if(wrapper.firstChild) row.appendChild(wrapper.firstChild);
+    });
+
+    btn.textContent = 'Muat Lebih Banyak ↓';
+    btn.disabled = false;
+  } catch(e) {
+    mainPage--;
+    btn.textContent = '❌ Gagal, Coba Lagi';
+    btn.disabled = false;
+  }
+  mainLoading = false;
+}
+
+// ── LOAD MORE SYSTEM (Row Sekunder: Indonesia, Top Rated, TV, Upcoming) ──
+const rowState = {
+  'indonesia-row': { page: 1, endpoint: '/discover/movie?with_original_language=id&sort_by=popularity.desc&', type: 'movie', loading: false },
+  'toprated-row':  { page: 1, endpoint: '/movie/top_rated?', type: 'movie', loading: false },
+  'tv-row':        { page: 1, endpoint: '/tv/popular?', type: 'tv', loading: false },
+  'upcoming-row':  { page: 1, endpoint: '/movie/upcoming?', type: 'movie', loading: false }
+};
+
+async function loadMoreRow(rowId){
+  const state = rowState[rowId];
+  if(!state || state.loading) return;
+  state.loading = true;
+
+  const row = document.getElementById(rowId);
+  const btn = row.nextElementSibling ? row.nextElementSibling.querySelector('button') : null;
+  if(btn){ btn.textContent = '⏳ Memuat...'; btn.disabled = true; }
+
+  try {
+    state.page++;
+    const url = `${PROXY}${state.endpoint}api_key=${API_KEY}&language=${LANG}&page=${state.page}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const results = data.results || [];
+
+    if(results.length === 0){
+      if(btn){ btn.textContent = 'Tidak ada lagi'; btn.disabled = true; }
+      state.loading = false;
+      return;
+    }
+
+    results.forEach(function(m){
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = renderCard(m, state.type);
+      if(wrapper.firstChild) row.appendChild(wrapper.firstChild);
+    });
+
+    if(btn){ btn.textContent = 'Muat Lebih Banyak ↓'; btn.disabled = false; }
+  } catch(e) {
+    state.page--;
+    if(btn){ btn.textContent = '❌ Gagal, Coba Lagi'; btn.disabled = false; }
+  }
+  state.loading = false;
+}
+
+// ── HERO ─────────────────────────────────────────────────
+async function loadHero(){
+  try{
+    const data=await apiFetch('/trending/movie/week?');
+    const m=(data.results||[])[0]; if(!m) return;
+    if(m.backdrop_path){
+      document.getElementById('hero-bg').style.backgroundImage=`url(${IMG}w1280${m.backdrop_path})`;
+    }
+    document.getElementById('hero-title').textContent=getTitle(m);
+    document.getElementById('hero-rating').textContent=`★ ${getRating(m)}`;
+    document.getElementById('hero-year').textContent=getYear(m);
+    document.getElementById('hero-lang').textContent=getLang(m);
+    document.getElementById('hero-desc').textContent=m.overview||'Tidak ada deskripsi.';
+    
+    document.getElementById('hero-trailer-btn').onclick=()=>openModal(m.id,'movie',true);
+    document.getElementById('hero-info-btn').onclick=()=>openModal(m.id,'movie',false);
+  }catch(e){}
+}
+
+async function getTrailerKey(id,type){
+  try{
+    const res=await fetch(`${PROXY}/${type}/${id}/videos?api_key=${API_KEY}&language=en-US`);
+    const data=await res.json();
+    return (data.results||[]).find(v=>v.site==='YouTube'&&v.type==='Trailer')?.key||null;
+  }catch(e){return null;}
+}
+
+async function getProviders(id,type){
+  try{
+    const res=await fetch(`${PROXY}/${type}/${id}/watch/providers?api_key=${API_KEY}`);
+    const data = await res.json(); return data.results||{};
+  }catch(e){return {};}
+}
+
+// ── ENGINE MODAL LAYER FIX ──────────────────────────────
+async function openModal(id, type='movie', playTrailer=true){
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modal-media').innerHTML=`<div style="height:280px;background:#111;display:flex;align-items:center;justify-content:center;color:var(--muted)">⏳ Memuat...</div>`;
+  document.getElementById('modal-title').textContent='Memuat...';
+  ['modal-meta','modal-genres','modal-desc','watch-full-section'].forEach(id=>document.getElementById(id).innerHTML='');
+
+  try{
+    const [m, trailerKey, providers] = await Promise.all([
+      fetch(`${PROXY}/${type}/${id}?api_key=${API_KEY}&language=${LANG}`).then(r=>r.json()),
+      getTrailerKey(id,type),
+      getProviders(id,type)
+    ]);
+    const title=getTitle(m), rating=getRating(m), year=getYear(m);
+    const runtime=m.runtime?`${m.runtime}m`:(m.episode_run_time?.[0]?`${m.episode_run_time[0]}m/ep`:'—');
+    const backdrop=m.backdrop_path?`${IMG}w780${m.backdrop_path}`:null;
+
+    if(trailerKey){
+      document.getElementById('modal-media').innerHTML=`<div class="trailer-wrap"><iframe src="https://www.youtube.com/embed/${trailerKey}?autoplay=0&rel=0" allowfullscreen></iframe></div>`;
+    } else {
+      document.getElementById('modal-media').innerHTML=backdrop ?`<img src="${backdrop}" class="modal-backdrop" loading="lazy" decoding="async">` :`<div class="modal-backdrop-placeholder">🎬</div>`;
+    }
+
+    document.getElementById('modal-title').textContent=title;
+    document.getElementById('modal-meta').innerHTML=`<span class="rating-badge">★ ${rating}</span><span>${year}</span><span class="sep">|</span><span>${runtime}</span><span class="sep">|</span><span>${getLang(m)}</span>`;
+    document.getElementById('modal-genres').innerHTML=(m.genres||[]).slice(0,4).map(g=>`<span class="genre-tag">${g.name}</span>`).join('');
+    document.getElementById('modal-desc').textContent=m.overview||'Tidak ada deskripsi.';
+
+    // ── SCHEMA MOVIE LENGKAP (JSON-LD) — aktor, sutradara, trailer, rating ──
+    document.getElementById('movie-schema')?.remove();
+    const movieSchema = document.createElement('script');
+    movieSchema.id = 'movie-schema';
+    movieSchema.type = 'application/ld+json';
+
+    // Build cast (actor) list from credits if available
+    const castList = (m.credits?.cast||[]).slice(0,5).map(a => ({
+      "@type": "Person",
+      "name": a.name
+    }));
+
+    // Build director list
+    const directorList = (m.credits?.crew||[])
+      .filter(c => c.job === 'Director')
+      .slice(0,2)
+      .map(d => ({ "@type": "Person", "name": d.name }));
+
+    // Get trailer URL from videos if available
+    const trailerObj = (m.videos?.results||[]).find(v => v.type === 'Trailer' && v.site === 'YouTube');
+    const trailerUrl = trailerObj ? `https://www.youtube.com/watch?v=${trailerObj.key}` : undefined;
+
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": type === 'tv' ? "TVSeries" : "Movie",
+      "name": title,
+      "url": `https://chokierwin.github.io/`,
+      "image": m.poster_path ? `${IMG}w500${m.poster_path}` : undefined,
+      "description": m.overview || undefined,
+      "datePublished": m.release_date || m.first_air_date || undefined,
+      "genre": (m.genres||[]).map(g => g.name),
+      "inLanguage": m.original_language || "en",
+      "aggregateRating": m.vote_average ? {
+        "@type": "AggregateRating",
+        "ratingValue": parseFloat(m.vote_average.toFixed(1)),
+        "bestRating": "10",
+        "worstRating": "1",
+        "ratingCount": m.vote_count || 1
+      } : undefined
+    };
+
+    // Add cast & director only if available (from detail API call)
+    if(castList.length > 0) schemaData.actor = castList;
+    if(directorList.length > 0) schemaData.director = directorList;
+    if(trailerUrl) schemaData.trailer = {
+      "@type": "VideoObject",
+      "name": `Trailer ${title}`,
+      "embedUrl": trailerUrl,
+      "thumbnailUrl": m.poster_path ? `${IMG}w500${m.poster_path}` : undefined
+    };
+    if(m.runtime) schemaData.duration = `PT${m.runtime}M`;
+    if(m.number_of_seasons) schemaData.numberOfSeasons = m.number_of_seasons;
+
+    movieSchema.textContent = JSON.stringify(schemaData);
+    document.head.appendChild(movieSchema);
+
+    const region=providers['ID']||providers['US']||null;
+    let provHtml=`<div class="watch-full-title">Opsi Lisensi Resmi:</div>`;
+    if(region && region.flatrate){
+      provHtml+=`<div class="providers-list">`;
+      region.flatrate.forEach(p=>{
+        const link=providerLinks[p.provider_name]||'#';
+        provHtml+=`<a class="provider-btn" href="${link}" target="_blank"><img class="provider-logo" src="${IMG}w45${p.logo_path}" loading="lazy" decoding="async"><div><span>${p.provider_name}</span></div></a>`;
+      });
+      provHtml+=`</div>`;
+    } else provHtml+=`<p class="no-providers">Belum tersedia lisensi resmi digital.</p>`;
+    document.getElementById('watch-full-section').innerHTML=provHtml;
+  }catch(e){ document.getElementById('modal-title').textContent='Gagal memuat.'; }
+}
+
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.getElementById('modal-media').innerHTML=''; }
+function closeModalClick(e){ if(e.target===document.getElementById('modal')) closeModal(); }
+
+async function switchTab(el,type,mediaType){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active'); mainPage=1; mainType=mediaType;
+  if(type==='trending'){ mainIsTrending = true; mainEndpoint = `/trending/${mediaType}/week?`; } 
+  else { mainIsTrending = false; mainEndpoint = `/${mediaType}/${type}?`; }
+  await loadRow('main-row',mainEndpoint,mediaType);
+}
+
+// ── SEARCH SYSTEM ─────────────────────────────────────────
+let searchTimer, searchCache={};
+document.getElementById('search-input').addEventListener('input',function(){
+  clearTimeout(searchTimer); const q=this.value.trim();
+  if(!q){ closeSearch(); return; }
+  document.getElementById('search-overlay').classList.add('open');
+  searchTimer=setTimeout(async()=>{
+    try{
+      const res=await fetch(`${PROXY}/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(q)}`);
+      const data=await res.json(); renderSearchResults(q,(data.results||[]).slice(0,18));
+    }catch(e){}
+  },500);
+});
+function renderSearchResults(q,results){
+  document.getElementById('search-results-grid').innerHTML=results.length?results.map(m=>renderCard(m,m.media_type||'movie')).join(''):`<p>Tidak ditemukan.</p>`;
+}
+function closeSearch(){ document.getElementById('search-overlay').remove('open'); }
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz5RCR0F71MtHnZ-daPLDzSxAmD2BhBYk", authDomain: "calm-history-468711-e6.firebaseapp.com",
+    projectId: "calm-history-468711-e6", storageBucket: "calm-history-468711-e6.firebasestorage.app",
+    messagingSenderId: "382975857631", appId: "1:382975857631:web:1fe6482ea61445ecc52a6a"
+  };
+  const app = initializeApp(firebaseConfig); const auth = getAuth(app);
+  onAuthStateChanged(auth, (user) => {
+    const avatar = document.getElementById('nav-avatar');
+    if(avatar) avatar.textContent = user ? (user.email||'U')[0].toUpperCase() : 'ID';
+  });
+</script>
+<script>
+  loadHero(); loadRow('main-row','/trending/movie/week?','movie');
+  setTimeout(() => {
+    loadRow('indonesia-row','/discover/movie?with_original_language=id&sort_by=popularity.desc&','movie');
+    loadRow('toprated-row','/movie/top_rated?','movie');
+    loadRow('tv-row','/tv/popular?','tv');
+    loadRow('upcoming-row','/movie/upcoming?','movie');
+  }, 1200);
+
+  // ── ARTIKEL CMS DARI GOOGLE SHEETS (via Apps Script) ──
+  const CMS_API_URL = 'https://script.google.com/macros/s/AKfycbxACMNupjqBd-bPgBb1xj6FVcI9OH8vnQn2xdeVobMRrsDcBt9Jx83ppw0pFKNJGknR2A/exec';
+
+  async function loadCMSArtikel(){
+    const section = document.getElementById('cms-artikel-section');
+    const grid = document.getElementById('cms-artikel-grid');
+    if(!section || !grid){ console.warn('[CMS] Element section/grid belum ditemukan'); return; }
+
+    try {
+      console.log('[CMS] Mulai fetch artikel...');
+      const res = await fetch(CMS_API_URL);
+      if(!res.ok) throw new Error('HTTP status '+res.status);
+      const articles = await res.json();
+      console.log('[CMS] Data diterima:', articles);
+
+      if(!Array.isArray(articles) || articles.length === 0){
+        console.warn('[CMS] Tidak ada artikel atau bukan array');
+        return;
+      }
+
+      grid.innerHTML = articles.map(a => `
+        <a href="artikel-cms.html?slug=${encodeURIComponent(a.slug||'')}" style="text-decoration:none;background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(229,9,20,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+          <div style="font-size:26px;margin-bottom:8px">${a.emoji||'📝'}</div>
+          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">${a.title||'Tanpa Judul'}</div>
+          <div style="font-size:11px;color:#b3b3b3">${a.category||''}</div>
+        </a>`).join('');
+
+      section.style.display = 'block';
+      console.log('[CMS] Berhasil render', articles.length, 'artikel');
+    } catch(e) {
+      console.error('[CMS] Gagal memuat artikel:', e);
+      // Diam-diam gagal — section tetap hidden, tidak mengganggu pengalaman pengguna
+    }
+  }
+
+  // Jalankan segera setelah DOM siap, tidak menunggu setTimeout row film
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', loadCMSArtikel);
+  } else {
+    loadCMSArtikel();
+  }
+</script>
+</body>
+</html>
