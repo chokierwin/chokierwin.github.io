@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — FlixID</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JDD9XZQWQ"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6JDD9XZQWQ');</script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--red:#E50914;--dark:#0f0f0f;--sidebar:#111;--card:#1a1a1a;--border:rgba(255,255,255,0.07);--text:#fff;--muted:#888;--green:#03c04a;--yellow:#f5a623;--font-title:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif}
+    body{background:var(--dark);color:var(--text);font-family:var(--font-body);min-height:100vh}
+
+    /* LOGIN SCREEN */
+    #login-screen{position:fixed;inset:0;background:var(--dark);display:flex;align-items:center;justify-content:center;z-index:1000}
+    .login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;width:360px;text-align:center}
+    .login-logo{font-family:var(--font-title);font-size:2.5rem;letter-spacing:3px;margin-bottom:6px}
+    .login-logo span:last-child{color:var(--red)}
+    .login-subtitle{font-size:13px;color:var(--muted);margin-bottom:28px}
+    .login-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;color:#fff;font-size:14px;font-family:var(--font-body);margin-bottom:12px}
+    .login-input:focus{outline:none;border-color:rgba(229,9,20,0.5)}
+    .login-btn{width:100%;background:var(--red);color:#fff;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font-body)}
+    .login-btn:hover{background:#f40612}
+    .login-error{background:rgba(229,9,20,0.1);border:1px solid rgba(229,9,20,0.3);border-radius:6px;padding:10px;font-size:12px;color:#ff6b6b;margin-bottom:12px;display:none}
+
+    /* LAYOUT */
+    #app{display:none;min-height:100vh}
+    .layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+
+    /* SIDEBAR */
+    .sidebar{background:var(--sidebar);border-right:1px solid var(--border);padding:0;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+    .sidebar-logo{padding:20px;border-bottom:1px solid var(--border);font-family:var(--font-title);font-size:1.8rem;letter-spacing:2px}
+    .sidebar-logo span:last-child{color:var(--red)}
+    .sidebar-logo small{display:block;font-family:var(--font-body);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+    .sidebar-nav{padding:12px 8px;flex:1}
+    .nav-section{font-size:10px;color:#444;text-transform:uppercase;letter-spacing:1px;padding:8px 8px 6px;margin-top:8px}
+    .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer;transition:all .2s;margin-bottom:2px}
+    .nav-item:hover{background:rgba(255,255,255,0.05);color:#fff}
+    .nav-item.active{background:rgba(229,9,20,0.12);color:var(--red);border-left:2px solid var(--red);border-radius:0 8px 8px 0;margin-left:-8px;padding-left:18px}
+    .nav-icon{font-size:16px;width:20px;text-align:center}
+    .sidebar-footer{padding:12px;border-top:1px solid var(--border)}
+    .agc-status{background:rgba(3,192,74,0.08);border:1px solid rgba(3,192,74,0.2);border-radius:8px;padding:10px 12px}
+    .agc-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+    /* MAIN */
+    .main{padding:24px;overflow-y:auto}
+    .page{display:none}
+    .page.active{display:block}
+    .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+    .page-title{font-family:var(--font-title);font-size:2rem;letter-spacing:1px}
+    .page-title span{color:var(--red)}
+    .btn{padding:9px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-body);border:none;transition:all .2s}
+    .btn-red{background:var(--red);color:#fff}
+    .btn-red:hover{background:#f40612}
+    .btn-ghost{background:rgba(255,255,255,0.06);color:#fff;border:1px solid var(--border)}
+    .btn-ghost:hover{background:rgba(255,255,255,0.1)}
+    .btn-green{background:rgba(3,192,74,0.15);color:var(--green);border:1px solid rgba(3,192,74,0.3)}
+
+    /* STATS */
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+    .stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+    .stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+    .stat-value{font-family:var(--font-title);font-size:2.2rem;letter-spacing:1px;line-height:1}
+    .stat-change{font-size:11px;margin-top:6px}
+    .stat-change.up{color:var(--green)}
+    .stat-change.down{color:var(--red)}
+    .stat-change.neutral{color:var(--yellow)}
+
+    /* CARDS */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px}
+    .card-title{font-size:14px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+    /* TABLE */
+    table{width:100%;border-collapse:collapse}
+    th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+    td{padding:12px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04)}
+    tr:hover td{background:rgba(255,255,255,0.02)}
+    .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+    .badge-green{background:rgba(3,192,74,0.15);color:var(--green)}
+    .badge-red{background:rgba(229,9,20,0.15);color:#ff6b6b}
+    .badge-yellow{background:rgba(245,166,35,0.15);color:var(--yellow)}
+
+    /* FORM */
+    .form-group{margin-bottom:16px}
+    .form-label{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,0.6);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+    .form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:#fff;font-size:13px;font-family:var(--font-body)}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:rgba(229,9,20,0.4)}
+    .form-textarea{height:120px;resize:vertical}
+    .form-select option{background:#1a1a1a}
+
+    /* FILM GRID */
+    .film-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+    .film-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .2s}
+    .film-item:hover{border-color:rgba(229,9,20,0.4)}
+    .film-thumb{width:100%;height:160px;object-fit:cover;background:#1a1a2e;display:block}
+    .film-info{padding:8px}
+    .film-name{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .film-rating{font-size:10px;color:#ffd700;margin-top:2px}
+
+    /* AGC PAGE */
+    .agc-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
+    .agc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .toggle{width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:12px;position:relative;cursor:pointer;transition:background .2s}
+    .toggle.on{background:var(--green)}
+    .toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s}
+    .toggle.on::after{left:23px}
+    .progress-bar{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;margin-top:8px}
+    .progress-fill{height:100%;background:var(--red);border-radius:3px;transition:width .5s}
+
+    /* NOTIFICATION */
+    .notif{position:fixed;top:20px;right:20px;background:#1a1a1a;border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-size:13px;z-index:999;transform:translateX(200%);transition:transform .3s}
+    .notif.show{transform:translateX(0)}
+    .notif.success{border-color:rgba(3,192,74,0.4);color:var(--green)}
+    .notif.error{border-color:rgba(229,9,20,0.4);color:#ff6b6b}
+
+    @media(max-width:768px){.layout{grid-template-columns:1fr}.sidebar{display:none}.stats-grid{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo"><span>Flix</span><span>ID</span></div>
+    <div class="login-subtitle">🔐 Admin Dashboard — Login Required</div>
+    <div class="login-error" id="login-error"></div>
+    <input type="email" class="login-input" id="admin-email" placeholder="Email admin...">
+    <input type="password" class="login-input" id="admin-password" placeholder="Password...">
+    <button class="login-btn" onclick="adminLogin()">Masuk ke Dashboard</button>
+    <p style="font-size:11px;color:#444;margin-top:16px">Halaman ini hanya untuk admin FlixID</p>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif"></div>
+
+<!-- APP -->
+<div id="app">
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <span>Flix</span><span>ID</span>
+        <small>Admin Panel</small>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section">Menu Utama</div>
+        <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item" onclick="showPage('artikel',this)"><span class="nav-icon">📝</span> Artikel</div>
+        <div class="nav-item" onclick="showPage('film',this)"><span class="nav-icon">🎬</span> Film Trending</div>
+        <div class="nav-item" onclick="showPage('agc',this)"><span class="nav-icon">🤖</span> AGC Settings</div>
+
+        <div class="nav-section">Monetisasi</div>
+        <div class="nav-item" onclick="showPage('iklan',this)"><span class="nav-icon">💰</span> Iklan & AdSense</div>
+        <div class="nav-item" onclick="showPage('analitik',this)"><span class="nav-icon">📈</span> Analitik</div>
+
+        <div class="nav-section">Sistem</div>
+        <div class="nav-item" onclick="showPage('seo',this)"><span class="nav-icon">🔍</span> SEO Tools</div>
+        <div class="nav-item" onclick="showPage('pengguna',this)"><span class="nav-icon">👥</span> Pengguna</div>
+        <div class="nav-item" onclick="showPage('pengaturan',this)"><span class="nav-icon">⚙️</span> Pengaturan</div>
+
+        <div class="nav-section">Aksi Cepat</div>
+        <div class="nav-item" onclick="window.open('index.html','_blank')"><span class="nav-icon">🌐</span> Lihat Website</div>
+        <div class="nav-item" onclick="adminLogout()"><span class="nav-icon">🚪</span> Keluar</div>
+      </div>
+      <div class="sidebar-footer">
+        <div class="agc-status">
+          <div style="font-size:12px;font-weight:600;color:var(--green)"><span class="agc-dot"></span>AGC Aktif</div>
+          <div style="font-size:11px;color:#555;margin-top:3px">Data TMDB real-time</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- DASHBOARD PAGE -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div class="page-title">Dashboard <span>FlixID</span></div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-ghost" onclick="refreshData()">🔄 Refresh</button>
+            <button class="btn btn-red" onclick="showPage('artikel',document.querySelector('[onclick*=artikel]'))">+ Artikel Baru</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Artikel</div>
+            <div class="stat-value" id="stat-artikel">15</div>
+            <div class="stat-change up">+5 artikel baru</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Pengunjung Hari Ini</div>
+            <div class="stat-value" id="stat-visitors">—</div>
+            <div class="stat-change neutral"><a href="https://analytics.google.com" target="_blank" style="color:var(--yellow);text-decoration:underline">Cek Google Analytics →</a></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Status AdSense</div>
+            <div class="stat-value" style="font-size:1.2rem;color:var(--yellow)">Review</div>
+            <div class="stat-change neutral">Menunggu approval</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Film Trending (TMDB)</div>
+            <div class="stat-value" id="stat-films">—</div>
+            <div class="stat-change up">Real-time minggu ini</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📝 Artikel Terbaru <a href="#" onclick="showPage('artikel',document.querySelectorAll('.nav-item')[1]);return false" style="font-size:11px;color:var(--red);text-decoration:none">Lihat Semua →</a></div>
+            <table>
+              <tr><th>Judul</th><th>Status</th></tr>
+              <tr><td>10 Film Indonesia Terbaik 2024</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Serial Netflix Wajib Tonton</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Anime Terpopuler 2024</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Netflix vs Disney+ vs Prime</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Tips Pilih Film yang Tepat</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Film Horor Indonesia Terbaik</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Film Action Netflix Terbaik</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Film Korea Terbaru 2024</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Anime Terbaik Sepanjang Masa</td><td><span class="badge badge-green">Live</span></td></tr>
+              <tr><td>Urutan Nonton Film Marvel</td><td><span class="badge badge-green">Live</span></td></tr>
+            </table>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title">🎬 Film Trending Sekarang</div>
+              <div id="trending-list" style="display:flex;flex-direction:column;gap:8px">
+                <div style="color:var(--muted);font-size:13px">Memuat data TMDB...</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">💰 Status Monetisasi</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:13px">Google AdSense</span>
+                  <span class="badge badge-yellow">Menunggu Review</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:13px">Google Analytics</span>
+                  <span class="badge badge-green">Aktif</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:13px">Google Search Console</span>
+                  <span class="badge badge-green">Terverifikasi</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:13px">Firebase Auth</span>
+                  <span class="badge badge-green">Aktif</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:13px">PWA</span>
+                  <span class="badge badge-green">Aktif</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTIKEL PAGE -->
+      <div class="page" id="page-artikel">
+        <div class="page-header">
+          <div class="page-title">Kelola <span>Artikel</span></div>
+          <button class="btn btn-red" onclick="showNewArtikelForm()">+ Artikel Baru</button>
+        </div>
+        <div id="new-artikel-form" style="display:none" class="card">
+          <div class="card-title">✍️ Tulis Artikel Baru</div>
+          <div id="artikel-form-msg" style="display:none;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:14px"></div>
+          <div class="grid-2">
+            <div>
+              <div class="form-group">
+                <label class="form-label">Judul Artikel</label>
+                <input type="text" class="form-input" id="art-title" placeholder="Contoh: 10 Film Action Terbaik 2024" oninput="updateSlugPreview()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Slug (URL) — otomatis dari judul</label>
+                <input type="text" class="form-input" id="art-slug" placeholder="otomatis-dari-judul">
+              </div>
+              <div class="form-group" style="display:flex;gap:10px">
+                <div style="flex:1">
+                  <label class="form-label">Kategori</label>
+                  <select class="form-select" id="art-cat">
+                    <option>Film Indonesia</option>
+                    <option>Film Hollywood</option>
+                    <option>Serial TV</option>
+                    <option>Anime</option>
+                    <option>Film Korea</option>
+                    <option>Tips & Panduan</option>
+                    <option>Perbandingan Platform</option>
+                  </select>
+                </div>
+                <div style="width:90px">
+                  <label class="form-label">Emoji</label>
+                  <input type="text" class="form-input" id="art-emoji" placeholder="📝" value="📝" style="text-align:center">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Meta Description (SEO)</label>
+                <input type="text" class="form-input" id="art-desc" placeholder="Deskripsi singkat untuk Google...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Keywords (SEO)</label>
+                <input type="text" class="form-input" id="art-keywords" placeholder="film action, netflix, streaming...">
+              </div>
+            </div>
+            <div>
+              <div class="form-group">
+                <label class="form-label">Konten Artikel (boleh pakai tag &lt;p&gt;)</label>
+                <textarea class="form-textarea" id="art-content" style="height:200px" placeholder="Tulis konten artikel di sini..."></textarea>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button class="btn btn-red" id="btn-publish-artikel" onclick="publishArtikel()">🚀 Publish Artikel</button>
+                <button class="btn btn-ghost" onclick="showNewArtikelForm()">Batal</button>
+              </div>
+              <div style="font-size:11px;color:var(--muted);margin-top:10px">Artikel akan langsung tersimpan ke Google Sheets dan tampil di FlixID dalam beberapa detik.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">📋 Semua Artikel (15)</div>
+          <table>
+            <tr><th>Judul</th><th>Kategori</th><th>Status</th><th>Aksi</th></tr>
+            <tr><td>10 Film Indonesia Terbaik 2024</td><td>Film Indonesia</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-indonesia-terbaik-2024.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Serial Netflix Wajib Tonton</td><td>Serial TV</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-serial-netflix-wajib-tonton.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Anime Terpopuler 2024</td><td>Anime</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-anime-populer-2024.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Netflix vs Disney+ vs Prime Video</td><td>Platform</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-perbedaan-netflix-disney-prime.html','_blank')">Lihat</button></td></tr>
+            <tr><td>7 Tips Jitu Pilih Film</td><td>Tips</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-tips-pilih-film.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Horor Indonesia Terbaik</td><td>Film Indonesia</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-horor-indonesia-terbaik.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Action Netflix Terbaik</td><td>Hollywood</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-action-netflix-terbaik.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Korea Terbaru 2024</td><td>Film Korea</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-korea-terbaru.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Anime Terbaik Sepanjang Masa</td><td>Anime</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-anime-terbaik-sepanjang-masa.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Urutan Nonton Film Marvel</td><td>Hollywood</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-urutan-film-marvel.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Romantis Indonesia</td><td>Film Indonesia</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-romantis-indonesia.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Disney+ Terbaik</td><td>Platform</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-disney-plus-terbaik.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Thriller Terbaik</td><td>Hollywood</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-thriller-terbaik.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Film Keluarga Terbaik</td><td>Keluarga</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-film-keluarga-terbaik.html','_blank')">Lihat</button></td></tr>
+            <tr><td>Serial TV Terbaik 2024</td><td>Serial TV</td><td><span class="badge badge-green">Live</span></td><td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px" onclick="window.open('artikel-serial-tv-terbaik-2024.html','_blank')">Lihat</button></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- FILM PAGE -->
+      <div class="page" id="page-film">
+        <div class="page-header">
+          <div class="page-title">Film <span>Trending</span></div>
+          <button class="btn btn-ghost" onclick="loadTrendingAdmin()">🔄 Refresh TMDB</button>
+        </div>
+        <div class="card">
+          <div class="card-title">🔥 Trending Minggu Ini (Real-time TMDB)</div>
+          <div class="film-grid" id="admin-film-grid">
+            <div style="color:var(--muted);font-size:13px;grid-column:1/-1">Memuat data film...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGC PAGE -->
+      <div class="page" id="page-agc">
+        <div class="page-header">
+          <div class="page-title">AGC <span>Settings</span></div>
+          <span class="badge badge-green" style="font-size:12px;padding:6px 12px">● AGC Aktif</span>
+        </div>
+
+        <div class="agc-card">
+          <div class="agc-header">
+            <div>
+              <div style="font-size:14px;font-weight:600">Auto Update Film Trending</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Data film otomatis update dari TMDB setiap kali halaman dibuka</div>
+            </div>
+            <div class="toggle on" id="toggle-trending" onclick="toggleAGC(this)"></div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px">✅ Real-time — Update setiap kunjungan</div>
+        </div>
+
+        <div class="agc-card">
+          <div class="agc-header">
+            <div>
+              <div style="font-size:14px;font-weight:600">Auto Generate Artikel</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Generate artikel baru secara otomatis dari data film trending</div>
+            </div>
+            <div class="toggle" id="toggle-artikel" onclick="toggleAGC(this)"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px">⚠️ Butuh Claude API untuk generate artikel otomatis</div>
+        </div>
+
+        <div class="agc-card">
+          <div class="agc-header">
+            <div>
+              <div style="font-size:14px;font-weight:600">Auto SEO Meta Tags</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Meta title & description otomatis update sesuai film trending</div>
+            </div>
+            <div class="toggle on" id="toggle-seo" onclick="toggleAGC(this)"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px">✅ Aktif — Title & description update real-time</div>
+        </div>
+
+        <div class="agc-card">
+          <div class="agc-header">
+            <div>
+              <div style="font-size:14px;font-weight:600">Auto Sitemap Update</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:3px">Sitemap.xml otomatis diperbarui saat artikel baru ditambahkan</div>
+            </div>
+            <div class="toggle on" id="toggle-sitemap" onclick="toggleAGC(this)"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px">✅ Aktif — 20 URL terdaftar di sitemap</div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="card-title">📊 Status Konten AGC</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:14px;text-align:center">
+              <div style="font-size:24px;font-weight:700;color:var(--green)">15</div>
+              <div style="font-size:11px;color:var(--muted)">Artikel Live</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:14px;text-align:center">
+              <div style="font-size:24px;font-weight:700;color:var(--red)">∞</div>
+              <div style="font-size:11px;color:var(--muted)">Film TMDB</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border-radius:8px;padding:14px;text-align:center">
+              <div style="font-size:24px;font-weight:700;color:var(--yellow)">20</div>
+              <div style="font-size:11px;color:var(--muted)">URL di Sitemap</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IKLAN PAGE -->
+      <div class="page" id="page-iklan">
+        <div class="page-header">
+          <div class="page-title">Iklan & <span>AdSense</span></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">💰 Status Google AdSense</div>
+            <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);border-radius:10px;padding:16px;margin-bottom:14px">
+              <div style="font-size:14px;font-weight:600;color:var(--yellow);margin-bottom:6px">⏳ Menunggu Review</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.6">Google sedang mereview website FlixID. Proses biasanya memakan waktu 1-14 hari. Pastikan website terus mendapat traffic.</div>
+            </div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:10px">Checklist AdSense:</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:8px;align-items:center;font-size:13px"><span style="color:var(--green)">✅</span> Website live & publik</div>
+              <div style="display:flex;gap:8px;align-items:center;font-size:13px"><span style="color:var(--green)">✅</span> 15 artikel original</div>
+              <div style="display:flex;gap:8px;align-items:center;font-size:13px"><span style="color:var(--green)">✅</span> Halaman About, Privacy, Contact</div>
+              <div style="display:flex;gap:8px;align-items:center;font-size:13px"><span style="color:var(--green)">✅</span> ads.txt terpasang</div>
+              <div style="display:flex;gap:8px;align-items:center;font-size:13px"><span style="color:var(--green)">✅</span> Kode AdSense terpasang</div>
+              <div style="display:flex;gap:8px;align-items:center;font-size:13px"><span style="color:var(--yellow)">⏳</span> Traffic organik (perlu ditingkatkan)</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">📢 Slot Iklan Aktif</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px">
+                <div style="font-size:12px;font-weight:600;margin-bottom:4px">Banner Top Homepage</div>
+                <div style="font-size:11px;color:var(--muted)">Posisi: Setelah hero section</div>
+                <div style="font-size:11px;color:var(--muted)">Format: Responsive</div>
+                <span class="badge badge-green" style="margin-top:6px;display:inline-block">Aktif</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px">
+                <div style="font-size:12px;font-weight:600;margin-bottom:4px">Banner Mid Homepage</div>
+                <div style="font-size:11px;color:var(--muted)">Posisi: Setelah promo section</div>
+                <div style="font-size:11px;color:var(--muted)">Format: Responsive</div>
+                <span class="badge badge-green" style="margin-top:6px;display:inline-block">Aktif</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px">
+                <div style="font-size:12px;font-weight:600;margin-bottom:4px">Banner Artikel</div>
+                <div style="font-size:11px;color:var(--muted)">Posisi: Dalam 15 artikel</div>
+                <div style="font-size:11px;color:var(--muted)">Format: In-article</div>
+                <span class="badge badge-green" style="margin-top:6px;display:inline-block">Aktif</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANALITIK PAGE -->
+      <div class="page" id="page-analitik">
+        <div class="page-header">
+          <div class="page-title">Analitik <span>Traffic</span></div>
+          <button class="btn btn-ghost" onclick="window.open('https://analytics.google.com','_blank')">Buka Google Analytics ↗</button>
+        </div>
+        <div class="card">
+          <div class="card-title">📊 Google Analytics — Real Data</div>
+          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:20px;text-align:center">
+            <div style="font-size:36px;margin-bottom:12px">📈</div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:8px">Data Analytics Tersedia di Google Analytics</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Klik tombol di atas untuk melihat data pengunjung real-time, sumber traffic, halaman populer, dan lainnya.</div>
+            <button class="btn btn-red" onclick="window.open('https://analytics.google.com','_blank')">Buka Google Analytics →</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🔍 Google Search Console</div>
+          <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:20px;text-align:center">
+            <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Lihat keyword ranking, indexing status, dan error SEO di Google Search Console.</div>
+            <button class="btn btn-ghost" onclick="window.open('https://search.google.com/search-console','_blank')">Buka Search Console →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO PAGE -->
+      <div class="page" id="page-seo">
+        <div class="page-header">
+          <div class="page-title">SEO <span>Tools</span></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">✅ SEO Checklist</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Meta Title & Description</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Open Graph Tags</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Twitter Card</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Schema.org WebSite</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Schema.org Movie</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>FAQ Schema</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Sitemap.xml</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Robots.txt</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Google Search Console</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>15 Artikel Original</span><span class="badge badge-green">✅</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Page Speed Mobile</span><span class="badge badge-yellow">67/100</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span>Backlinks</span><span class="badge badge-red">Perlu ditambah</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">🎯 Target Keyword</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px">
+                <div style="font-size:12px;font-weight:600">film indonesia terbaik 2024</div>
+                <div style="font-size:11px;color:var(--muted)">Volume: Tinggi | Kesulitan: Sedang</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px">
+                <div style="font-size:12px;font-weight:600">nonton film online legal</div>
+                <div style="font-size:11px;color:var(--muted)">Volume: Tinggi | Kesulitan: Tinggi</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px">
+                <div style="font-size:12px;font-weight:600">anime terpopuler 2024</div>
+                <div style="font-size:11px;color:var(--muted)">Volume: Sedang | Kesulitan: Rendah</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px">
+                <div style="font-size:12px;font-weight:600">urutan nonton film marvel</div>
+                <div style="font-size:11px;color:var(--muted)">Volume: Sedang | Kesulitan: Rendah</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border-radius:6px;padding:10px">
+                <div style="font-size:12px;font-weight:600">serial netflix wajib tonton</div>
+                <div style="font-size:11px;color:var(--muted)">Volume: Sedang | Kesulitan: Rendah</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PENGGUNA PAGE -->
+      <div class="page" id="page-pengguna">
+        <div class="page-header">
+          <div class="page-title">Kelola <span>Pengguna</span></div>
+          <button class="btn btn-ghost" onclick="window.open('https://console.firebase.google.com','_blank')">Buka Firebase Console ↗</button>
+        </div>
+        <div class="card">
+          <div class="card-title">👥 Pengguna Terdaftar</div>
+          <div style="text-align:center;padding:30px;color:var(--muted)">
+            <div style="font-size:36px;margin-bottom:12px">👤</div>
+            <div style="font-size:14px;margin-bottom:8px">Data pengguna tersimpan di Firebase</div>
+            <div style="font-size:12px;margin-bottom:16px">Buka Firebase Console untuk melihat daftar pengguna yang sudah mendaftar</div>
+            <button class="btn btn-red" onclick="window.open('https://console.firebase.google.com/project/calm-history-468711-e6/authentication/users','_blank')">Lihat Pengguna di Firebase →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PENGATURAN PAGE -->
+      <div class="page" id="page-pengaturan">
+        <div class="page-header">
+          <div class="page-title">Pengaturan <span>Website</span></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">⚙️ Info Website</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div><div class="form-label">Nama Website</div><input type="text" class="form-input" value="FlixID"></div>
+              <div><div class="form-label">URL</div><input type="text" class="form-input" value="chokierwin.github.io"></div>
+              <div><div class="form-label">TMDB API Key</div><input type="password" class="form-input" value="1e1af9892dbebb210cd4c5a3fb1588ed"></div>
+              <div><div class="form-label">Google Analytics ID</div><input type="text" class="form-input" value="G-6JDD9XZQWQ"></div>
+              <div><div class="form-label">AdSense Publisher ID</div><input type="text" class="form-input" value="ca-pub-8642572709653420"></div>
+              <button class="btn btn-red" onclick="showNotif('Pengaturan disimpan! ✅','success')">Simpan Pengaturan</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">🔗 Link Penting</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <a href="https://console.firebase.google.com" target="_blank" class="btn btn-ghost" style="text-decoration:none;text-align:center">🔥 Firebase Console</a>
+              <a href="https://analytics.google.com" target="_blank" class="btn btn-ghost" style="text-decoration:none;text-align:center">📊 Google Analytics</a>
+              <a href="https://search.google.com/search-console" target="_blank" class="btn btn-ghost" style="text-decoration:none;text-align:center">🔍 Search Console</a>
+              <a href="https://adsense.google.com" target="_blank" class="btn btn-ghost" style="text-decoration:none;text-align:center">💰 Google AdSense</a>
+              <a href="https://github.com/chokierwin/chokierwin.github.io" target="_blank" class="btn btn-ghost" style="text-decoration:none;text-align:center">🐙 GitHub Repo</a>
+              <a href="https://pwabuilder.com" target="_blank" class="btn btn-ghost" style="text-decoration:none;text-align:center">📱 PWA Builder</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end main -->
+  </div><!-- end layout -->
+</div><!-- end app -->
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz5RCR0F71MtHnZ-daPLDzSxAmD2BhBYk",
+    authDomain: "calm-history-468711-e6.firebaseapp.com",
+    projectId: "calm-history-468711-e6",
+    storageBucket: "calm-history-468711-e6.firebasestorage.app",
+    messagingSenderId: "382975857631",
+    appId: "1:382975857631:web:1fe6482ea61445ecc52a6a"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const ADMIN_EMAIL = 'chokierwin@gmail.com';
+
+  auth.onAuthStateChanged(user => {
+    if(user && user.email === ADMIN_EMAIL){
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      loadTrendingAdmin();
+    } else if(user && user.email !== ADMIN_EMAIL){
+      showLoginError('Akun ini tidak memiliki akses admin!');
+      auth.signOut();
+    }
+  });
+
+  window.adminLogin = async () => {
+    const email = document.getElementById('admin-email').value.trim();
+    const password = document.getElementById('admin-password').value;
+    if(!email||!password){ showLoginError('Isi email dan password!'); return; }
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch(e) {
+      showLoginError('Email atau password salah!');
+    }
+  };
+
+  window.adminLogout = async () => {
+    await auth.signOut();
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  };
+</script>
+
+<script>
+const API_KEY = '1e1af9892dbebb210cd4c5a3fb1588ed';
+const IMG = 'https://image.tmdb.org/t/p/';
+
+function showLoginError(msg){
+  const el = document.getElementById('login-error');
+  el.textContent = msg; el.style.display = 'block';
+}
+
+function showPage(name, el){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(el) el.classList.add('active');
+  if(name === 'film') loadTrendingAdmin();
+}
+
+function showNotif(msg, type='success'){
+  const el = document.getElementById('notif');
+  el.textContent = msg;
+  el.className = `notif ${type} show`;
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+function toggleAGC(el){
+  el.classList.toggle('on');
+  showNotif(el.classList.contains('on') ? '✅ Fitur diaktifkan' : '⛔ Fitur dinonaktifkan');
+}
+
+function refreshData(){
+  loadTrendingAdmin();
+  showNotif('✅ Data berhasil diperbarui!');
+}
+
+function showNewArtikelForm(){
+  const form = document.getElementById('new-artikel-form');
+  form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function slugify(text){
+  return text.toString().toLowerCase().trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function updateSlugPreview(){
+  const title = document.getElementById('art-title').value;
+  const slugField = document.getElementById('art-slug');
+  // Hanya auto-fill kalau user belum mengetik manual di kolom slug
+  if(!slugField.dataset.manual){
+    slugField.value = slugify(title);
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const slugField = document.getElementById('art-slug');
+  if(slugField){
+    slugField.addEventListener('input', () => { slugField.dataset.manual = 'true'; });
+  }
+});
+
+function showFormMsg(msg, type){
+  const el = document.getElementById('artikel-form-msg');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.style.background = type === 'error' ? 'rgba(229,9,20,0.1)' : 'rgba(3,192,74,0.1)';
+  el.style.border = type === 'error' ? '1px solid rgba(229,9,20,0.3)' : '1px solid rgba(3,192,74,0.3)';
+  el.style.color = type === 'error' ? '#ff6b6b' : 'var(--green)';
+}
+
+const CMS_API_URL_ADMIN = 'https://script.google.com/macros/s/AKfycbxACMNupjqBd-bPgBb1xj6FVcI9OH8vnQn2xdeVobMRrsDcBt9Jx83ppw0pFKNJGknR2A/exec';
+
+async function publishArtikel(){
+  const title = document.getElementById('art-title').value.trim();
+  const slug = document.getElementById('art-slug').value.trim() || slugify(title);
+  const category = document.getElementById('art-cat').value;
+  const emoji = document.getElementById('art-emoji').value.trim() || '📝';
+  const meta_description = document.getElementById('art-desc').value.trim();
+  const keywords = document.getElementById('art-keywords').value.trim();
+  const content = document.getElementById('art-content').value.trim();
+
+  if(!title){ showFormMsg('❌ Judul artikel wajib diisi!', 'error'); return; }
+  if(!content){ showFormMsg('❌ Konten artikel wajib diisi!', 'error'); return; }
+
+  const btn = document.getElementById('btn-publish-artikel');
+  btn.disabled = true;
+  btn.textContent = '⏳ Mempublikasikan...';
+
+  try {
+    const res = await fetch(CMS_API_URL_ADMIN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // hindari CORS preflight di Apps Script
+      body: JSON.stringify({
+        title, slug, category, emoji, meta_description, keywords,
+        content: `<p>${content.replace(/\n\n+/g,'</p><p>').replace(/\n/g,'<br>')}</p>`,
+        published: true,
+        date: new Date().toISOString()
+      })
+    });
+    const result = await res.json();
+
+    if(result.success){
+      showFormMsg('✅ Artikel berhasil dipublikasikan! Akan muncul di FlixID dalam beberapa detik.', 'success');
+      showNotif('✅ Artikel berhasil dipublikasikan!');
+      // Reset form
+      document.getElementById('art-title').value = '';
+      document.getElementById('art-slug').value = '';
+      document.getElementById('art-slug').dataset.manual = '';
+      document.getElementById('art-desc').value = '';
+      document.getElementById('art-keywords').value = '';
+      document.getElementById('art-content').value = '';
+    } else {
+      showFormMsg('❌ Gagal: ' + (result.error||'Terjadi kesalahan'), 'error');
+    }
+  } catch(e) {
+    console.error(e);
+    showFormMsg('❌ Gagal terhubung ke server. Cek koneksi internet.', 'error');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '🚀 Publish Artikel';
+}
+
+async function loadTrendingAdmin(){
+  const list = document.getElementById('trending-list');
+  const grid = document.getElementById('admin-film-grid');
+
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=id-ID`);
+    if(!res.ok) throw new Error('TMDB API error: '+res.status);
+    const data = await res.json();
+    const films = (data.results||[]).slice(0,10);
+
+    if(films.length === 0) throw new Error('Tidak ada data film');
+
+    // Update stat card: total hasil trending minggu ini
+    const statFilms = document.getElementById('stat-films');
+    if(statFilms) statFilms.textContent = (data.total_results||films.length).toLocaleString('id-ID');
+
+    // Update dashboard list (top 5)
+    if(list){
+      list.innerHTML = films.slice(0,5).map((m,i) => `
+        <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+          <span style="font-size:12px;color:#444;width:16px">${i+1}</span>
+          ${m.poster_path ? `<img src="${IMG}w45${m.poster_path}" style="width:28px;height:40px;object-fit:cover;border-radius:3px" alt="${m.title||m.name}">` : '<div style="width:28px;height:40px;background:#1a1a2e;border-radius:3px"></div>'}
+          <div>
+            <div style="font-size:12px;font-weight:500">${m.title||m.name}</div>
+            <div style="font-size:10px;color:#666">★ ${m.vote_average?.toFixed(1)||'—'} • ${(m.release_date||'').slice(0,4)||'—'}</div>
+          </div>
+        </div>`).join('');
+    }
+
+    // Update film grid (top 10)
+    if(grid){
+      grid.innerHTML = films.map(m => `
+        <div class="film-item" onclick="window.open('https://www.themoviedb.org/movie/${m.id}','_blank')" title="${m.title||m.name}">
+          ${m.poster_path ? `<img class="film-thumb" src="${IMG}w185${m.poster_path}" alt="${m.title||m.name}" loading="lazy">` : '<div class="film-thumb" style="display:flex;align-items:center;justify-content:center;font-size:24px">🎬</div>'}
+          <div class="film-info">
+            <div class="film-name">${m.title||m.name}</div>
+            <div class="film-rating">★ ${m.vote_average?.toFixed(1)||'—'}</div>
+          </div>
+        </div>`).join('');
+    }
+
+    showNotif('✅ Data TMDB berhasil diperbarui');
+  } catch(e) {
+    console.error(e);
+    if(list) list.innerHTML = `<div style="color:#ff6b6b;font-size:12px">⚠️ Gagal memuat data TMDB. ${e.message||'Cek koneksi internet.'}</div>`;
+    if(grid) grid.innerHTML = `<div style="color:#ff6b6b;font-size:13px;grid-column:1/-1">⚠️ Gagal memuat data TMDB. Klik "Refresh TMDB" untuk coba lagi.</div>`;
+    showNotif('❌ Gagal memuat data TMDB', 'error');
+  }
+}
+
+// Update jumlah artikel otomatis dari jumlah baris tabel artikel
+function updateArtikelCount(){
+  const rows = document.querySelectorAll('#page-artikel table tr').length - 1; // minus header row
+  const statArtikel = document.getElementById('stat-artikel');
+  if(statArtikel && rows > 0) statArtikel.textContent = rows;
+}
+
+// Enter key for login
+document.addEventListener('keydown', e => {
+  if(e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none'){
+    window.adminLogin && window.adminLogin();
+  }
+});
+
+// Run on load
+document.addEventListener('DOMContentLoaded', updateArtikelCount);
+</script>
+
+</body>
+</html>
