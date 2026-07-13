@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="puEOUiO0We7ua4QZ4DvbFhX_FLEFnuroH-ZvaTpTgiU">
-  <link rel="icon" type="image/png" sizes="32x32" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -120,7 +120,7 @@
     ]
   }
   </script>
-  <meta name="theme-color" content="#E50914">
+  <meta name="theme-color" content="#0B1220">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="FlixID">
@@ -173,6 +173,7 @@
     nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,18,32,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,194,255,0.08); }
     .logo { font-family: var(--font-title); font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; cursor: pointer; text-decoration: none; display:flex; align-items:center; gap:8px; }
     .logo-icon { width:32px; height:32px; background: var(--gradient); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .logo-icon-img { width:36px; height:36px; border-radius:8px; flex-shrink:0; object-fit:contain; }
     .logo span:first-child { color: #fff; }
     .logo span:last-child { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .nav-links { display: flex; gap: 22px; }
@@ -330,9 +331,9 @@
     /* FOOTER LENGKAP */
     footer { padding: 48px 48px 24px; border-top: 1px solid rgba(0,194,255,0.08); background: #080f1a; margin-top: 24px; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
-    .footer-brand .footer-logo { font-family: var(--font-title); font-size: 1.8rem; letter-spacing: 2px; text-decoration: none; display: inline-block; margin-bottom: 12px; }
+    .footer-brand .footer-logo { font-family: var(--font-title); font-size: 1.8rem; letter-spacing: 2px; text-decoration: none; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
     .footer-brand .footer-logo span:first-child { color: #fff; }
-    .footer-brand .footer-logo span:last-child { color: var(--red); }
+    .footer-brand .footer-logo span:last-child { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 320px; }
     .footer-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
     .footer-col a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
@@ -391,7 +392,7 @@
 
 <a href="#main-row" style="position:absolute;top:-40px;left:0;background:var(--red);color:#fff;padding:8px 16px;z-index:999;border-radius:0 0 4px 0;font-size:13px;text-decoration:none" onfocus="this.style.top='0'">Lewati ke konten</a>
 <nav>
-  <a href="index.html" class="logo"><span>Flix</span><span>ID</span></a>
+  <a href="index.html" class="logo"><img src="icon-192.png" alt="FlixID" class="logo-icon-img"><span>Flix</span><span>ID</span></a>
   <div class="nav-links">
     <a class="active" href="index.html">Beranda</a>
     <a onclick="switchTab(document.querySelectorAll('.tab')[1],'popular','movie')">Film</a>
@@ -565,7 +566,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="index.html" class="footer-logo"><span>Flix</span><span>ID</span></a>
+      <a href="index.html" class="footer-logo"><img src="icon-192.png" alt="FlixID" class="logo-icon-img"><span>Flix</span><span>ID</span></a>
       <p>Mesin pencari film Indonesia — Cari Film • Lihat Trailer • Temukan Tempat Menonton</p>
       <div class="footer-social">
         <a href="https://instagram.com/flixid" target="_blank" rel="noopener">📸 Instagram</a>
