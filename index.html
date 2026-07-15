@@ -398,6 +398,7 @@
     <a onclick="switchTab(document.querySelectorAll('.tab')[1],'popular','movie')">Film</a>
     <a onclick="switchTab(document.querySelectorAll('.tab')[3],'popular','tv')">Serial TV</a>
     <a onclick="switchTab(document.querySelectorAll('.tab')[2],'top_rated','movie')">Top Rated</a>
+    <a href="artikel.html">Artikel</a>
     <a href="about.html">Tentang</a>
   </div>
   <div class="nav-right">
@@ -555,12 +556,54 @@
   </div>
 </section>
 
-<!-- ARTIKEL — SEMUA DARI GOOGLE SHEETS (CMS) -->
-<div class="section" id="cms-artikel-section" style="display:none">
+<!-- ARTIKEL — 8 TERBARU, STATIS DI HTML (bisa di-crawl langsung tanpa JS) -->
+<div class="section" id="artikel-section">
   <div class="section-header">
     <div class="section-title">📝 Artikel <span>Film & Streaming</span></div>
+    <a href="artikel.html" style="font-size:13px;color:#00C2FF;text-decoration:none">Lihat Semua →</a>
   </div>
-  <div id="cms-artikel-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px">
+      <a href="artikel-5-film-sci-fi-terbaik-yang-wajib-ditonton.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">🚀</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">5 Film Sci-Fi Terbaik yang Wajib Ditonton</div>
+        <div style="font-size:11px;color:#8899AA">Film Hollywood</div>
+      </a>
+      <a href="artikel-serial-tv-terbaik-2024.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">🎭</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">10 Serial TV Terbaik 2024 yang Wajib Dibinge-Watch</div>
+        <div style="font-size:11px;color:#8899AA">Serial TV</div>
+      </a>
+      <a href="artikel-film-keluarga-terbaik.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">👨‍👩‍👧</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">10 Film Keluarga Terbaik untuk Ditonton Bersama</div>
+        <div style="font-size:11px;color:#8899AA">Film Hollywood</div>
+      </a>
+      <a href="artikel-film-thriller-terbaik.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">🔪</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">10 Film Thriller Terbaik yang Bikin Jantung Berdegup</div>
+        <div style="font-size:11px;color:#8899AA">Film Hollywood</div>
+      </a>
+      <a href="artikel-film-disney-plus-terbaik.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">✨</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">10 Film Disney+ Terbaik yang Wajib Ditonton Keluarga</div>
+        <div style="font-size:11px;color:#8899AA">Film Hollywood</div>
+      </a>
+      <a href="artikel-film-romantis-indonesia.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">💕</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">10 Film Romantis Indonesia Terbaik yang Bikin Baper</div>
+        <div style="font-size:11px;color:#8899AA">Film Indonesia</div>
+      </a>
+      <a href="artikel-urutan-film-marvel.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">🦸</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">Urutan Nonton Film Marvel (MCU) yang Benar 2024</div>
+        <div style="font-size:11px;color:#8899AA">Film Hollywood</div>
+      </a>
+      <a href="artikel-anime-terbaik-sepanjang-masa.html" style="text-decoration:none;background:#111927;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s">
+        <div style="font-size:26px;margin-bottom:8px">⭐</div>
+        <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">10 Anime Terbaik Sepanjang Masa yang Wajib Ditonton</div>
+        <div style="font-size:11px;color:#8899AA">Anime</div>
+      </a>
+  </div>
 </div>
 
 <footer>
@@ -578,6 +621,7 @@
       <h4>Navigasi</h4>
       <a href="index.html">Beranda</a>
       <a href="#main-row">Film Populer</a>
+      <a href="artikel.html">Artikel</a>
       <a href="auth.html">Login / Daftar</a>
     </div>
     <div class="footer-col">
@@ -956,47 +1000,6 @@ function closeSearch(){ document.getElementById('search-overlay').remove('open')
     loadRow('upcoming-row','/movie/upcoming?','movie');
   }, 1200);
 
-  // ── ARTIKEL CMS DARI GOOGLE SHEETS (via Apps Script) ──
-  const CMS_API_URL = 'https://script.google.com/macros/s/AKfycbxACMNupjqBd-bPgBb1xj6FVcI9OH8vnQn2xdeVobMRrsDcBt9Jx83ppw0pFKNJGknR2A/exec';
-
-  async function loadCMSArtikel(){
-    const section = document.getElementById('cms-artikel-section');
-    const grid = document.getElementById('cms-artikel-grid');
-    if(!section || !grid){ console.warn('[CMS] Element section/grid belum ditemukan'); return; }
-
-    try {
-      console.log('[CMS] Mulai fetch artikel...');
-      const res = await fetch(CMS_API_URL);
-      if(!res.ok) throw new Error('HTTP status '+res.status);
-      const articles = await res.json();
-      console.log('[CMS] Data diterima:', articles);
-
-      if(!Array.isArray(articles) || articles.length === 0){
-        console.warn('[CMS] Tidak ada artikel atau bukan array');
-        return;
-      }
-
-      grid.innerHTML = articles.map(a => `
-        <a href="artikel-cms.html?slug=${encodeURIComponent(a.slug||'')}" style="text-decoration:none;background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;display:block;transition:border-color .2s" onmouseover="this.style.borderColor='rgba(229,9,20,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
-          <div style="font-size:26px;margin-bottom:8px">${a.emoji||'📝'}</div>
-          <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:5px">${a.title||'Tanpa Judul'}</div>
-          <div style="font-size:11px;color:#b3b3b3">${a.category||''}</div>
-        </a>`).join('');
-
-      section.style.display = 'block';
-      console.log('[CMS] Berhasil render', articles.length, 'artikel');
-    } catch(e) {
-      console.error('[CMS] Gagal memuat artikel:', e);
-      // Diam-diam gagal — section tetap hidden, tidak mengganggu pengalaman pengguna
-    }
-  }
-
-  // Jalankan segera setelah DOM siap, tidak menunggu setTimeout row film
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', loadCMSArtikel);
-  } else {
-    loadCMSArtikel();
-  }
 </script>
 </body>
 </html>
