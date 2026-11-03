@@ -1,0 +1,36 @@
+name: Perbarui konten statis beranda
+
+on:
+  schedule:
+    - cron: '0 20 * * *'   # 03:00 WIB setiap hari
+  workflow_dispatch:        # bisa dijalankan manual dari tab Actions
+
+permissions:
+  contents: write
+
+jobs:
+  prerender:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Isi hero dan grid ke index.html
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node scripts/prerender.mjs index.html
+
+      - name: Commit jika ada perubahan
+        run: |
+          if git diff --quiet; then
+            echo "Tidak ada perubahan."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add index.html
+            git commit -m "Perbarui konten statis beranda"
+            git push
+          fi
