@@ -488,12 +488,12 @@
 // ── KONFIGURASI ─────────────────────────────────────────
 // PROXY = alamat Cloudflare Worker milik Anda (lihat tmdb-proxy-worker.js).
 // Kunci TMDB TIDAK lagi ada di sisi klien; Worker yang menyimpannya.
-const PROXY = 'https://flixid-tmdb.GANTI-SUBDOMAIN.workers.dev';
+const PROXY = 'https://flixid-tmdb.chokierwin.workers.dev';
 const IMG = 'https://image.tmdb.org/t/p/';
 const LANG = 'id-ID';
 
-if (PROXY.indexOf('GANTI-SUBDOMAIN') !== -1) {
-  console.error('FlixID: ganti PROXY dengan alamat Worker Anda (cari "GANTI-SUBDOMAIN").');
+if (PROXY.indexOf('flixid-tmdb.chokierwin.workers.dev') !== -1) {
+  console.error('FlixID: ganti PROXY dengan alamat Worker Anda (cari "flixid-tmdb.chokierwin.workers.dev").');
 }
 
 const FEEDS = {
